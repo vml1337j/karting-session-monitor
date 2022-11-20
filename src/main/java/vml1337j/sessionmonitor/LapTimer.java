@@ -2,35 +2,56 @@ package vml1337j.sessionmonitor;
 
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LapTimer {
 
-    private boolean isStart;
-    private LocalTime startTime;
-    private LocalTime stopTime;
+    private boolean isStart = false;
+    private int numberOfSectors = 0;
 
-    public LapTimer() {
-        this.isStart = false;
-    }
+    private LocalTime lapStartTime = null;
+    private LocalTime lapFinishTime = null;
 
-    public void start(LocalTime startTime) {
-        this.isStart = true;
-        this.startTime = startTime;
-    }
-
-    public void stop(LocalTime stopTime) {
-        this.isStart = false;
-        this.stopTime = stopTime;
-    }
+    private LocalTime lastTimePoint = null;
+    private List<Duration> sectors = new ArrayList<>();
 
     public boolean isStart() {
         return isStart;
     }
 
-    public Duration result() {
+    public void startLap(LocalTime lapStartTime) {
+        this.lapStartTime = lapStartTime;
+        lastTimePoint = lapStartTime;
+        isStart = true;
+    }
+
+    public void finishLap(LocalTime lapFinishTime) {
+        this.lapFinishTime = lapFinishTime;
+        passSector(lapFinishTime);
+        isStart = false;
+    }
+
+    public int numberOfSectors() {
+        return numberOfSectors;
+    }
+
+    public void passSector(LocalTime sectorPassedAt) {
+        sectors.add(Duration.between(
+                lastTimePoint, sectorPassedAt
+        ));
+        lastTimePoint = sectorPassedAt;
+        numberOfSectors++;
+    }
+
+    public Duration lapTime() {
         return Duration.between(
-                startTime,
-                stopTime
+                lapStartTime,
+                lapFinishTime
         );
+    }
+
+    public List<Duration> passedSectors() {
+        return sectors;
     }
 }
