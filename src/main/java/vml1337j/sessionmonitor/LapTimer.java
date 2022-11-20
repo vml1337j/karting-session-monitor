@@ -8,7 +8,6 @@ import java.util.List;
 public class LapTimer {
 
     private boolean isStart = false;
-    private int numberOfSectors = 0;
 
     private LocalTime lapStartTime = null;
     private LocalTime lapFinishTime = null;
@@ -33,7 +32,7 @@ public class LapTimer {
     }
 
     public int numberOfSectors() {
-        return numberOfSectors;
+        return sectors.size();
     }
 
     public void passSector(LocalTime sectorPassedAt) {
@@ -41,7 +40,6 @@ public class LapTimer {
                 lastTimePoint, sectorPassedAt
         ));
         lastTimePoint = sectorPassedAt;
-        numberOfSectors++;
     }
 
     public Duration lapTime() {
