@@ -82,4 +82,19 @@ public class StopwatchTest {
         assertThat(stopwatch.getNumberOfSectors())
                 .isEqualTo(2);
     }
+
+    @Test
+    void shouldReturnDurationOfSectors() {
+        Stopwatch stopwatch = new Stopwatch();
+
+        stopwatch.start(LocalTime.of(16, 0, 0));
+        stopwatch.split();
+        stopwatch.stop(LocalTime.of(16, 0, 30));
+
+        assertThat(stopwatch.durationOfSectors())
+                .containsExactly(
+                        Duration.ofSeconds(15),
+                        Duration.ofSeconds(15)
+                );
+    }
 }

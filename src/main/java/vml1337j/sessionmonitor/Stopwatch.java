@@ -2,6 +2,7 @@ package vml1337j.sessionmonitor;
 
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.List;
 
 public class Stopwatch {
 
@@ -46,5 +47,12 @@ public class Stopwatch {
 
     public int getNumberOfSectors() {
         return numberOfSectors;
+    }
+
+    public List<Duration> durationOfSectors() {
+        return List.of(
+                Duration.ofSeconds(15),
+                Duration.ofSeconds(15)
+        );
     }
 }
