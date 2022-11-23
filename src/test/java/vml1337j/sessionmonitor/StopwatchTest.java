@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.time.LocalTime;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -71,19 +70,23 @@ public class StopwatchTest {
         Lap lap = stopwatch.getLap();
 
         assertThat(lap.durations())
-                .isEqualTo(List.of(Duration.ofSeconds(30)));
+                .containsExactly(Duration.ofSeconds(30));
     }
 
     @Test
-    void shouldAddSector() {
+    void shouldReturnLapWithTwoSector() {
         Stopwatch stopwatch = new Stopwatch();
 
         stopwatch.start(LocalTime.of(16, 0, 0));
-        stopwatch.split(LocalTime.of(16, 0, 10));
+        stopwatch.split(LocalTime.of(16, 0, 15));
         stopwatch.stop(LocalTime.of(16, 0, 30));
+        Lap lap = stopwatch.getLap();
 
-        assertThat(stopwatch.getNumberOfSectors())
-                .isEqualTo(2);
+        assertThat(lap.durations())
+                .containsExactly(
+                        Duration.ofSeconds(15),
+                        Duration.ofSeconds(15)
+                );
     }
 
     @Test

@@ -53,10 +53,6 @@ public class Stopwatch {
         lastSplitTime = splitAt;
     }
 
-    public int getNumberOfSectors() {
-        return durations.size();
-    }
-
     public List<Duration> durationOfSectors() {
         return durations;
     }
