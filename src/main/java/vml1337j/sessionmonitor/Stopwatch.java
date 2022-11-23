@@ -11,7 +11,7 @@ public class Stopwatch {
     private LocalTime stopLapAt;
     private boolean isStarted;
     private final List<Duration> durations = new ArrayList<>();
-    private LocalTime lastSplitAt;
+    private LocalTime lastSplitTime;
 
     public Stopwatch() {
         isStarted = false;
@@ -19,7 +19,7 @@ public class Stopwatch {
 
     public void start(LocalTime startLapAt) {
         this.startLapAt = startLapAt;
-        lastSplitAt = startLapAt;
+        lastSplitTime = startLapAt;
         isStarted = true;
     }
 
@@ -30,7 +30,7 @@ public class Stopwatch {
     }
 
     private void addDuration(LocalTime splitAt) {
-        durations.add(Duration.between(lastSplitAt, splitAt));
+        durations.add(Duration.between(lastSplitTime, splitAt));
     }
 
     public boolean isStarted() {
@@ -50,7 +50,7 @@ public class Stopwatch {
 
     public void split(LocalTime splitAt) {
         addDuration(splitAt);
-        lastSplitAt = splitAt;
+        lastSplitTime = splitAt;
     }
 
     public int getNumberOfSectors() {
