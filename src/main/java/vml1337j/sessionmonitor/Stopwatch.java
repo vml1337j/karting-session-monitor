@@ -53,10 +53,6 @@ public class Stopwatch {
         lastSplitTime = splitAt;
     }
 
-    public List<Duration> durationOfSectors() {
-        return durations;
-    }
-
     public Lap getLap() {
         Lap lap = new Lap(getLapTime(), durations);
         return lap;
