@@ -10,10 +10,15 @@ public class Stopwatch {
     private LocalTime stopLapAt;
     private boolean isStarted;
     private int numberOfSectors;
+    private List<Duration> durations;
 
     public Stopwatch() {
         isStarted = false;
         numberOfSectors = 1;
+        durations = List.of(
+                Duration.ofSeconds(15),
+                Duration.ofSeconds(15)
+        );
     }
 
     public void start(LocalTime startLapAt) {
@@ -41,7 +46,7 @@ public class Stopwatch {
         }
     }
 
-    public void split() {
+    public void split(LocalTime splitAt) {
         numberOfSectors = 2;
     }
 
@@ -50,9 +55,6 @@ public class Stopwatch {
     }
 
     public List<Duration> durationOfSectors() {
-        return List.of(
-                Duration.ofSeconds(15),
-                Duration.ofSeconds(15)
-        );
+        return durations;
     }
 }

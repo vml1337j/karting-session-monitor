@@ -76,7 +76,7 @@ public class StopwatchTest {
         Stopwatch stopwatch = new Stopwatch();
 
         stopwatch.start(LocalTime.of(16, 0, 0));
-        stopwatch.split();
+        stopwatch.split(LocalTime.of(16, 0, 10));
         stopwatch.stop(LocalTime.of(16, 0, 30));
 
         assertThat(stopwatch.getNumberOfSectors())
@@ -88,7 +88,7 @@ public class StopwatchTest {
         Stopwatch stopwatch = new Stopwatch();
 
         stopwatch.start(LocalTime.of(16, 0, 0));
-        stopwatch.split();
+        stopwatch.split(LocalTime.of(16, 0, 15));
         stopwatch.stop(LocalTime.of(16, 0, 30));
 
         assertThat(stopwatch.durationOfSectors())
@@ -97,4 +97,21 @@ public class StopwatchTest {
                         Duration.ofSeconds(15)
                 );
     }
+
+//    @Test
+//    void shouldAddDurationOfSectorWhenTimeSplit() {
+//        Stopwatch stopwatch = new Stopwatch();
+//
+//        stopwatch.start(LocalTime.of(16, 0, 0));
+//        stopwatch.split(LocalTime.of(16, 0, 10));
+//        stopwatch.split(LocalTime.of(16, 0, 10));
+//        stopwatch.stop(LocalTime.of(16, 0, 30));
+//
+//        assertThat(stopwatch.durationOfSectors())
+//                .containsExactly(
+//                        Duration.ofSeconds(10),
+//                        Duration.ofSeconds(10),
+//                        Duration.ofSeconds(10)
+//                );
+//    }
 }
