@@ -10,8 +10,9 @@ public class Stopwatch {
     private LocalTime startLapAt;
     private LocalTime stopLapAt;
     private boolean isStarted;
-    private final List<Duration> durations = new ArrayList<>();
+
     private LocalTime lastSplitTime;
+    private final List<Duration> durations = new ArrayList<>();
 
     public Stopwatch() {
         isStarted = false;
@@ -29,23 +30,8 @@ public class Stopwatch {
         isStarted = false;
     }
 
-    private void addDuration(LocalTime splitAt) {
-        durations.add(Duration.between(lastSplitTime, splitAt));
-    }
-
     public boolean isStarted() {
         return isStarted;
-    }
-
-    private Duration getLapTime() {
-        lapIsPassed();
-        return Duration.between(startLapAt, stopLapAt);
-    }
-
-    private void lapIsPassed() {
-        if (!isStarted() && stopLapAt == null) {
-            throw new IllegalStateException();
-        }
     }
 
     public void split(LocalTime splitAt) {
@@ -53,8 +39,22 @@ public class Stopwatch {
         lastSplitTime = splitAt;
     }
 
+    private void addDuration(LocalTime splitAt) {
+        durations.add(Duration.between(lastSplitTime, splitAt));
+    }
+
     public Lap getLap() {
-        Lap lap = new Lap(getLapTime(), durations);
-        return lap;
+        return new Lap(getLapTime(), durations);
+    }
+
+    private Duration getLapTime() {
+        lapIsCompleted();
+        return Duration.between(startLapAt, stopLapAt);
+    }
+
+    private void lapIsCompleted() {
+        if (!isStarted() && stopLapAt == null) {
+            throw new IllegalStateException();
+        }
     }
 }
