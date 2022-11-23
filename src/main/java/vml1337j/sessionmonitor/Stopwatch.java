@@ -62,7 +62,7 @@ public class Stopwatch {
     }
 
     public Lap getLap() {
-        Lap lap = new Lap(getLapTime());
+        Lap lap = new Lap(getLapTime(), durations);
         return lap;
     }
 }

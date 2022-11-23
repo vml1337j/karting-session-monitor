@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -45,9 +46,10 @@ public class StopwatchTest {
 
         stopwatch.start(LocalTime.of(16, 0, 0));
         stopwatch.stop(LocalTime.of(16, 0, 10));
+        Lap lap = stopwatch.getLap();
 
-        assertThat(stopwatch.getLap())
-                .isEqualTo(new Lap(Duration.ofSeconds(10)));
+        assertThat(lap.time())
+                .isEqualTo(Duration.ofSeconds(10));
     }
 
     @Test
@@ -61,14 +63,15 @@ public class StopwatchTest {
     }
 
     @Test
-    void shouldReturnOneSectorWhenLapTimeNotSplit() {
+    void shouldReturnLapWithOneSector() {
         Stopwatch stopwatch = new Stopwatch();
 
         stopwatch.start(LocalTime.of(16, 0, 0));
         stopwatch.stop(LocalTime.of(16, 0, 30));
+        Lap lap = stopwatch.getLap();
 
-        assertThat(stopwatch.getNumberOfSectors())
-                .isEqualTo(1);
+        assertThat(lap.durations())
+                .isEqualTo(List.of(Duration.ofSeconds(30)));
     }
 
     @Test
