@@ -44,7 +44,7 @@ public class Stopwatch {
         return numberOfSectors;
     }
 
-    public void addSectorPoint() {
+    public void split() {
         numberOfSectors = 2;
     }
 }

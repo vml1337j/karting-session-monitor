@@ -71,15 +71,26 @@ public class StopwatchTest {
                 .isZero();
     }
 
-    @Test
-    void shouldAddTwoSectorsWhenFirstSectorPointAdded() {
-        Stopwatch stopwatch = new Stopwatch();
+//    @Test
+//    void shouldAddOneSplit() {
+//        Stopwatch stopwatch = new Stopwatch();
+//
+//        stopwatch.start(LocalTime.of(16, 0, 0));
+//        stopwatch.split();
+//
+//        assertThat(stopwatch.getNumberOfSectors())
+//                .isEqualTo(1);
+//    }
 
-        stopwatch.start(LocalTime.of(16, 0, 0));
-        stopwatch.addSectorPoint();
-        stopwatch.stop(LocalTime.of(16, 0, 30));
-
-        assertThat(stopwatch.getNumberOfSectors())
-                .isEqualTo(2);
-    }
+    //    @Test
+//    void shouldAddTwoSectorsWhenFirstIntervalAdded() {
+//        Stopwatch stopwatch = new Stopwatch();
+//
+//        stopwatch.start(LocalTime.of(16, 0, 0));
+//        stopwatch.split();
+//        stopwatch.stop(LocalTime.of(16, 0, 30));
+//
+//        assertThat(stopwatch.getNumberOfSectors())
+//                .isEqualTo(2);
+//    }
 }
