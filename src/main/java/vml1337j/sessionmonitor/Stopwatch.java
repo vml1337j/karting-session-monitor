@@ -37,7 +37,7 @@ public class Stopwatch {
         return isStarted;
     }
 
-    public Duration getLapTime() {
+    private Duration getLapTime() {
         lapIsPassed();
         return Duration.between(startLapAt, stopLapAt);
     }

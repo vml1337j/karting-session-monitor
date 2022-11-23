@@ -56,7 +56,7 @@ public class StopwatchTest {
 
         assertThat(stopwatch.isStarted())
                 .isFalse();
-        assertThatThrownBy(stopwatch::getLapTime)
+        assertThatThrownBy(stopwatch::getLap)
                 .isInstanceOf(IllegalStateException.class);
     }
 
