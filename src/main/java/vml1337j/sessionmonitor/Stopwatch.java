@@ -49,7 +49,8 @@ public class Stopwatch {
     }
 
     public void split(LocalTime splitAt) {
-        durations.add(Duration.between(startLapAt, splitAt));
+        addDuration(splitAt);
+        lastSplitAt = splitAt;
     }
 
     public int getNumberOfSectors() {
