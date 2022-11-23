@@ -2,6 +2,7 @@ package vml1337j.sessionmonitor;
 
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Stopwatch {
@@ -9,16 +10,11 @@ public class Stopwatch {
     private LocalTime startLapAt;
     private LocalTime stopLapAt;
     private boolean isStarted;
-    private int numberOfSectors;
-    private List<Duration> durations;
+    private List<Duration> durations = new ArrayList<>();
 
     public Stopwatch() {
         isStarted = false;
-        numberOfSectors = 1;
-        durations = List.of(
-                Duration.ofSeconds(15),
-                Duration.ofSeconds(15)
-        );
+        durations.add(Duration.ZERO);
     }
 
     public void start(LocalTime startLapAt) {
@@ -47,11 +43,11 @@ public class Stopwatch {
     }
 
     public void split(LocalTime splitAt) {
-        numberOfSectors = 2;
+        durations.add(Duration.ZERO);
     }
 
     public int getNumberOfSectors() {
-        return numberOfSectors;
+        return durations.size();
     }
 
     public List<Duration> durationOfSectors() {

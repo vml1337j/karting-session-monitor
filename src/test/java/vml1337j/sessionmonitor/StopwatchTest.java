@@ -83,20 +83,20 @@ public class StopwatchTest {
                 .isEqualTo(2);
     }
 
-    @Test
-    void shouldReturnDurationOfSectors() {
-        Stopwatch stopwatch = new Stopwatch();
-
-        stopwatch.start(LocalTime.of(16, 0, 0));
-        stopwatch.split(LocalTime.of(16, 0, 15));
-        stopwatch.stop(LocalTime.of(16, 0, 30));
-
-        assertThat(stopwatch.durationOfSectors())
-                .containsExactly(
-                        Duration.ofSeconds(15),
-                        Duration.ofSeconds(15)
-                );
-    }
+//    @Test
+//    void shouldReturnDurationOfSectors() {
+//        Stopwatch stopwatch = new Stopwatch();
+//
+//        stopwatch.start(LocalTime.of(16, 0, 0));
+//        stopwatch.split(LocalTime.of(16, 0, 15));
+//        stopwatch.stop(LocalTime.of(16, 0, 30));
+//
+//        assertThat(stopwatch.durationOfSectors())
+//                .containsExactly(
+//                        Duration.ofSeconds(15),
+//                        Duration.ofSeconds(15)
+//                );
+//    }
 
 //    @Test
 //    void shouldAddDurationOfSectorWhenTimeSplit() {
