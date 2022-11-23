@@ -61,36 +61,25 @@ public class StopwatchTest {
     }
 
     @Test
-    void shouldReturnZeroOfSectorsWhenNoSectorsAdded() {
+    void shouldReturnOneSectorWhenLapTimeNotSplit() {
         Stopwatch stopwatch = new Stopwatch();
 
         stopwatch.start(LocalTime.of(16, 0, 0));
         stopwatch.start(LocalTime.of(16, 0, 30));
 
         assertThat(stopwatch.getNumberOfSectors())
-                .isZero();
+                .isEqualTo(1);
     }
 
-//    @Test
-//    void shouldAddOneSplit() {
-//        Stopwatch stopwatch = new Stopwatch();
-//
-//        stopwatch.start(LocalTime.of(16, 0, 0));
-//        stopwatch.split();
-//
-//        assertThat(stopwatch.getNumberOfSectors())
-//                .isEqualTo(1);
-//    }
+    @Test
+    void shouldAddSector() {
+        Stopwatch stopwatch = new Stopwatch();
 
-    //    @Test
-//    void shouldAddTwoSectorsWhenFirstIntervalAdded() {
-//        Stopwatch stopwatch = new Stopwatch();
-//
-//        stopwatch.start(LocalTime.of(16, 0, 0));
-//        stopwatch.split();
-//        stopwatch.stop(LocalTime.of(16, 0, 30));
-//
-//        assertThat(stopwatch.getNumberOfSectors())
-//                .isEqualTo(2);
-//    }
+        stopwatch.start(LocalTime.of(16, 0, 0));
+        stopwatch.split();
+        stopwatch.stop(LocalTime.of(16, 0, 30));
+
+        assertThat(stopwatch.getNumberOfSectors())
+                .isEqualTo(2);
+    }
 }

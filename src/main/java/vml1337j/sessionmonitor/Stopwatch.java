@@ -12,7 +12,7 @@ public class Stopwatch {
 
     public Stopwatch() {
         isStarted = false;
-        numberOfSectors = 0;
+        numberOfSectors = 1;
     }
 
     public void start(LocalTime startLapAt) {
@@ -40,11 +40,11 @@ public class Stopwatch {
         }
     }
 
-    public int getNumberOfSectors() {
-        return numberOfSectors;
-    }
-
     public void split() {
         numberOfSectors = 2;
+    }
+
+    public int getNumberOfSectors() {
+        return numberOfSectors;
     }
 }
