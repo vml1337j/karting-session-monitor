@@ -65,7 +65,7 @@ public class StopwatchTest {
         Stopwatch stopwatch = new Stopwatch();
 
         stopwatch.start(LocalTime.of(16, 0, 0));
-        stopwatch.start(LocalTime.of(16, 0, 30));
+        stopwatch.stop(LocalTime.of(16, 0, 30));
 
         assertThat(stopwatch.getNumberOfSectors())
                 .isEqualTo(1);
@@ -81,6 +81,19 @@ public class StopwatchTest {
 
         assertThat(stopwatch.getNumberOfSectors())
                 .isEqualTo(2);
+    }
+
+    @Test
+    void shouldReturnOneDurationWhichEqualLapTimeWhenTimeNotSplit() {
+        Stopwatch stopwatch = new Stopwatch();
+
+        stopwatch.start(LocalTime.of(16, 0, 0));
+        stopwatch.stop(LocalTime.of(16, 0, 30));
+
+        assertThat(stopwatch.durationOfSectors())
+                .containsExactly(
+                        Duration.ofSeconds(30)
+                );
     }
 
 //    @Test

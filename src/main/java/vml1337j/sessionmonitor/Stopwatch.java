@@ -10,11 +10,10 @@ public class Stopwatch {
     private LocalTime startLapAt;
     private LocalTime stopLapAt;
     private boolean isStarted;
-    private List<Duration> durations = new ArrayList<>();
+    private final List<Duration> durations = new ArrayList<>();
 
     public Stopwatch() {
         isStarted = false;
-        durations.add(Duration.ZERO);
     }
 
     public void start(LocalTime startLapAt) {
@@ -24,6 +23,7 @@ public class Stopwatch {
 
     public void stop(LocalTime stopLapAt) {
         this.stopLapAt = stopLapAt;
+        durations.add(getLapTime());
         isStarted = false;
     }
 
