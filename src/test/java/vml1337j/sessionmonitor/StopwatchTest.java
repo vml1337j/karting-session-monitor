@@ -46,8 +46,8 @@ public class StopwatchTest {
         stopwatch.start(LocalTime.of(16, 0, 0));
         stopwatch.stop(LocalTime.of(16, 0, 10));
 
-        assertThat(stopwatch.getLapTime())
-                .isEqualTo(Duration.ofSeconds(10));
+        assertThat(stopwatch.getLap())
+                .isEqualTo(new Lap(Duration.ofSeconds(10)));
     }
 
     @Test

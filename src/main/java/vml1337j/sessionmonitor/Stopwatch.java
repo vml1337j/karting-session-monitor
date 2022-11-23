@@ -60,4 +60,9 @@ public class Stopwatch {
     public List<Duration> durationOfSectors() {
         return durations;
     }
+
+    public Lap getLap() {
+        Lap lap = new Lap(getLapTime());
+        return lap;
+    }
 }
