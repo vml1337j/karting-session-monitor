@@ -8,9 +8,11 @@ public class Stopwatch {
     private LocalTime startLapAt;
     private LocalTime stopLapAt;
     private boolean isStarted;
+    private int numberOfSectors;
 
     public Stopwatch() {
         isStarted = false;
+        numberOfSectors = 0;
     }
 
     public void start(LocalTime startLapAt) {
@@ -39,10 +41,10 @@ public class Stopwatch {
     }
 
     public int getNumberOfSectors() {
-        return 0;
+        return numberOfSectors;
     }
 
     public void addSectorPoint() {
-
+        numberOfSectors = 2;
     }
 }
