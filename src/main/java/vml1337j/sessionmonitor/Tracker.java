@@ -12,4 +12,9 @@ public class Tracker {
     public Position getPosition() {
         return new Position(x, y);
     }
+
+    public void move(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 }
