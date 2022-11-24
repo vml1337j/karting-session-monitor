@@ -15,8 +15,10 @@ public class Tracker {
     public void move(int x, int y) {
         position.change(x, y);
 
-        if (position.equals(startingLine)) {
+        if (position.equals(startingLine) && !stopwatch.isStarted()) {
             stopwatch.start(LocalTime.now());
+        } else if (position.equals(startingLine) && stopwatch.isStarted()) {
+            stopwatch.stop(LocalTime.now());
         }
     }
 

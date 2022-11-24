@@ -35,4 +35,17 @@ public class TrackerTest {
         assertThat(stopwatch.isStarted())
                 .isTrue();
     }
+
+    @Test
+    void shouldStopStopwatchWhenCrossStartingLineCoordinateAgain() {
+        Tracker tracker = new Tracker();
+
+        tracker.setStartingLine(10, 10);
+        tracker.move(10, 10);
+        tracker.move(10, 10);
+        Stopwatch stopwatch = tracker.getStopwatch();
+
+        assertThat(stopwatch.isStarted())
+                .isFalse();
+    }
 }
