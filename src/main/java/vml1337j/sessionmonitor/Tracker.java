@@ -14,11 +14,16 @@ public class Tracker {
 
     public void move(int x, int y) {
         position.change(x, y);
+        checkPosition();
+    }
 
-        if (position.equals(startingLine) && !stopwatch.isStarted()) {
-            stopwatch.start(LocalTime.now());
-        } else if (position.equals(startingLine) && stopwatch.isStarted()) {
-            stopwatch.stop(LocalTime.now());
+    private void checkPosition() {
+        if (position.equals(startingLine)) {
+            if (!stopwatch.isStarted()) {
+                stopwatch.start(LocalTime.now());
+            } else {
+                stopwatch.stop(LocalTime.now());
+            }
         }
     }
 
