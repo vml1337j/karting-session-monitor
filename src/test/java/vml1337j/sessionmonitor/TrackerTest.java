@@ -24,15 +24,15 @@ public class TrackerTest {
                 .isEqualTo(new Position(1, 1));
     }
 
-//    @Test
-//    void shouldStartStopwatchWhenCrossStartingLineCoordinate() {
-//        Tracker tracker = new Tracker();
-//
-//        tracker.setStartingLine(10, 10);
-//        tracker.move(1, 1);
-//        Stopwatch stopwatch = tracker.getStopwatch();
-//
-//        assertThat(stopwatch.isStarted())
-//                .isTrue();
-//    }
+    @Test
+    void shouldStartStopwatchWhenCrossStartingLineCoordinate() {
+        Tracker tracker = new Tracker();
+
+        tracker.setStartingLine(10, 10);
+        tracker.move(10, 10);
+        Stopwatch stopwatch = tracker.getStopwatch();
+
+        assertThat(stopwatch.isStarted())
+                .isTrue();
+    }
 }

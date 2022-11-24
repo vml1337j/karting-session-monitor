@@ -1,5 +1,7 @@
 package vml1337j.sessionmonitor;
 
+import java.time.LocalTime;
+
 public class Tracker {
     private Stopwatch stopwatch;
     private Position startingLine;
@@ -10,16 +12,20 @@ public class Tracker {
         stopwatch = new Stopwatch();
     }
 
-    public Position getPosition() {
-        return position;
-    }
-
     public void move(int x, int y) {
         position.change(x, y);
+
+        if (position.equals(startingLine)) {
+            stopwatch.start(LocalTime.now());
+        }
     }
 
     public void setStartingLine(int x, int y) {
         startingLine = new Position(x, y);
+    }
+
+    public Position getPosition() {
+        return position;
     }
 
     public Stopwatch getStopwatch() {
