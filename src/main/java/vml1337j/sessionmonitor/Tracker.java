@@ -3,14 +3,14 @@ package vml1337j.sessionmonitor;
 import java.time.LocalTime;
 
 public class Tracker {
+    private Track track;
     private Stopwatch stopwatch;
     private Position position;
-    private Track track;
 
-    public Tracker() {
-        position = new Position(0, 0);
+    public Tracker(Track track) {
+        this.track = track;
         stopwatch = new Stopwatch();
-        track = new Track(10, 10);
+        position = new Position(0, 0);
     }
 
     public void move(int x, int y) {
