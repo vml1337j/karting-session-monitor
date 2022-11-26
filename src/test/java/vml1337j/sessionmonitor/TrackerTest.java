@@ -28,7 +28,6 @@ public class TrackerTest {
     void shouldStartStopwatchWhenCrossStartingLineCoordinate() {
         Tracker tracker = new Tracker();
 
-        tracker.setStartingLine(10, 10);
         tracker.move(10, 10);
         Stopwatch stopwatch = tracker.getStopwatch();
 
@@ -40,7 +39,6 @@ public class TrackerTest {
     void shouldStopStopwatchWhenCrossStartingLineCoordinateAgain() {
         Tracker tracker = new Tracker();
 
-        tracker.setStartingLine(10, 10);
         tracker.move(10, 10);
         tracker.move(10, 10);
         Stopwatch stopwatch = tracker.getStopwatch();

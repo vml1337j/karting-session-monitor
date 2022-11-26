@@ -4,12 +4,13 @@ import java.time.LocalTime;
 
 public class Tracker {
     private Stopwatch stopwatch;
-    private Position startingLine;
     private Position position;
+    private Track track;
 
     public Tracker() {
         position = new Position(0, 0);
         stopwatch = new Stopwatch();
+        track = new Track(10, 10);
     }
 
     public void move(int x, int y) {
@@ -18,17 +19,18 @@ public class Tracker {
     }
 
     private void checkPosition() {
-        if (position.equals(startingLine)) {
+        if (track.hasStartingLinePosition(position)) {
             if (!stopwatch.isStarted()) {
                 stopwatch.start(LocalTime.now());
             } else {
                 stopwatch.stop(LocalTime.now());
             }
         }
-    }
 
-    public void setStartingLine(int x, int y) {
-        startingLine = new Position(x, y);
+//        if (track.hasCheckPosition(Position)) {
+//            new CrossCheckPositionAction(stopwatch);
+//            crossStartingLineAction.cross();
+//        }
     }
 
     public Position getPosition() {
