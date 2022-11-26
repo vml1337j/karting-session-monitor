@@ -50,4 +50,20 @@ public class TrackerTest {
         assertThat(stopwatch.isStarted())
                 .isFalse();
     }
+
+    @Test
+    void shouldReturnLapWithTwoDurations() {
+        Track track = new Track(new Position(10, 10));
+        track.addCheckPosition(15, 15);
+        Tracker tracker = new Tracker(track);
+
+        tracker.move(10, 10);
+        tracker.move(15, 15);
+        tracker.move(10, 10);
+        Stopwatch stopwatch = tracker.getStopwatch();
+        Lap lap = stopwatch.getLap();
+
+        assertThat(lap.durations().size())
+                .isEqualTo(2);
+    }
 }

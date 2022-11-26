@@ -3,9 +3,9 @@ package vml1337j.sessionmonitor;
 import java.time.LocalTime;
 
 public class Tracker {
-    private Track track;
-    private Stopwatch stopwatch;
-    private Position position;
+    private final Track track;
+    private final Stopwatch stopwatch;
+    private final Position position;
 
     public Tracker(Track track) {
         this.track = track;
@@ -27,10 +27,9 @@ public class Tracker {
             }
         }
 
-//        if (track.hasCheckPosition(Position)) {
-//            new CrossCheckPositionAction(stopwatch);
-//            crossStartingLineAction.cross();
-//        }
+        if (track.hasCheckPosition(position)) {
+            stopwatch.split(LocalTime.now());
+        }
     }
 
     public Position getPosition() {
