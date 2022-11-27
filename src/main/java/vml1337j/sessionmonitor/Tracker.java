@@ -7,18 +7,19 @@ public class Tracker {
     private final Stopwatch stopwatch;
     private final Position position;
 
-    public Tracker(Track track) {
+    public Tracker(Track track, Stopwatch stopwatch) {
         this.track = track;
-        stopwatch = new Stopwatch();
+        this.stopwatch = stopwatch;
         position = new Position(0, 0);
     }
 
     public void move(int x, int y) {
         position.change(x, y);
-        checkPosition();
+        isStartingLine();
+        isCheckPoint();
     }
 
-    private void checkPosition() {
+    private void isStartingLine() {
         if (track.hasStartingLinePosition(position)) {
             if (!stopwatch.isStarted()) {
                 stopwatch.start(LocalTime.now());
@@ -26,7 +27,9 @@ public class Tracker {
                 stopwatch.stop(LocalTime.now());
             }
         }
+    }
 
+    private void isCheckPoint() {
         if (track.hasCheckPosition(position)) {
             stopwatch.split(LocalTime.now());
         }
