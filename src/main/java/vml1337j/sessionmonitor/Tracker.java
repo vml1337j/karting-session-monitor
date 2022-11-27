@@ -7,6 +7,7 @@ public class Tracker {
     private final Stopwatch stopwatch;
     private final Position position;
     private int numberOfLaps;
+    private Lap lap;
 
     public Tracker(Track track, Stopwatch stopwatch) {
         this.track = track;
@@ -27,6 +28,8 @@ public class Tracker {
                 stopwatch.start(LocalTime.now());
             } else {
                 stopwatch.stop(LocalTime.now());
+                lap = stopwatch.getLap();
+                stopwatch.reset();
                 numberOfLaps++;
             }
         }
@@ -48,5 +51,9 @@ public class Tracker {
 
     public int getNumberOfLaps() {
         return numberOfLaps;
+    }
+
+    public Lap getLap() {
+        return lap;
     }
 }

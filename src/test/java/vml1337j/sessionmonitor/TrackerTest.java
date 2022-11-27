@@ -67,19 +67,33 @@ public class TrackerTest {
                 .isEqualTo(1);
     }
 
-    //    @Test
-//    void shouldReturnLapWithTwoDurations() {
-//        track.addCheckPosition(15, 15);
-//        Tracker tracker = new Tracker(track, stopwatch);
-//
-//        tracker.move(10, 10);
-//        tracker.move(15, 15);
-//        tracker.move(10, 10);
-//        Lap lap = stopwatch.getLap();
-//
-//        assertThat(lap.durations().size())
-//                .isEqualTo(2);
-//    }
+    @Test
+    void shouldHasTwoLapWhenCrossStartingLineTwiceAgain() {
+        Tracker tracker = new Tracker(track, stopwatch);
+
+        tracker.move(10, 10);
+        tracker.move(10, 10);
+
+        tracker.move(10, 10);
+        tracker.move(10, 10);
+
+        assertThat(tracker.getNumberOfLaps())
+                .isEqualTo(2);
+    }
+
+    @Test
+    void shouldReturnLapWithTwoDurations() {
+        track.addCheckPosition(15, 15);
+        Tracker tracker = new Tracker(track, stopwatch);
+
+        tracker.move(10, 10);
+        tracker.move(15, 15);
+        tracker.move(10, 10);
+        Lap lap = tracker.getLap();
+
+        assertThat(lap.durations().size())
+                .isEqualTo(2);
+    }
 
 //    @Test
 //    void shouldReturnLapWithThreeDurations() {

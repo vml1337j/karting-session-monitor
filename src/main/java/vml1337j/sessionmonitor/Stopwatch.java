@@ -12,10 +12,11 @@ public class Stopwatch {
     private boolean isStarted;
 
     private LocalTime lastSplitTime;
-    private final List<Duration> durations = new ArrayList<>();
+    private final List<Duration> durations;
 
     public Stopwatch() {
         isStarted = false;
+        durations = new ArrayList<>();
     }
 
     public void start(LocalTime startLapAt) {
@@ -52,7 +53,7 @@ public class Stopwatch {
     }
 
     public Lap getLap() {
-        return new Lap(getLapTime(), durations);
+        return new Lap(getLapTime(), List.copyOf(durations));
     }
 
     private Duration getLapTime() {
