@@ -106,4 +106,16 @@ public class StopwatchTest {
                         Duration.ofSeconds(10)
                 );
     }
+
+    @Test
+    void shouldResetStopwatch() {
+        Stopwatch stopwatch = new Stopwatch();
+
+        stopwatch.start(LocalTime.of(16, 0, 0));
+        stopwatch.stop(LocalTime.of(16, 0, 30));
+        stopwatch.reset();
+
+        assertThatThrownBy(stopwatch::getLap)
+                .isInstanceOf(IllegalStateException.class);
+    }
 }

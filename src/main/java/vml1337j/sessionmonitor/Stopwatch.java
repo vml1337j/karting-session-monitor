@@ -30,10 +30,6 @@ public class Stopwatch {
         isStarted = false;
     }
 
-    public boolean isStarted() {
-        return isStarted;
-    }
-
     public void split(LocalTime splitAt) {
         addDuration(splitAt);
         lastSplitTime = splitAt;
@@ -41,6 +37,18 @@ public class Stopwatch {
 
     private void addDuration(LocalTime splitAt) {
         durations.add(Duration.between(lastSplitTime, splitAt));
+    }
+
+    public void reset() {
+        isStarted = false;
+        startLapAt = null;
+        stopLapAt = null;
+        lastSplitTime = null;
+        durations.clear();
+    }
+
+    public boolean isStarted() {
+        return isStarted;
     }
 
     public Lap getLap() {
