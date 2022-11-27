@@ -6,11 +6,13 @@ public class Tracker {
     private final Track track;
     private final Stopwatch stopwatch;
     private final Position position;
+    private int numberOfLaps;
 
     public Tracker(Track track, Stopwatch stopwatch) {
         this.track = track;
         this.stopwatch = stopwatch;
         position = new Position(0, 0);
+        numberOfLaps = 0;
     }
 
     public void move(int x, int y) {
@@ -25,6 +27,7 @@ public class Tracker {
                 stopwatch.start(LocalTime.now());
             } else {
                 stopwatch.stop(LocalTime.now());
+                numberOfLaps++;
             }
         }
     }
@@ -41,5 +44,9 @@ public class Tracker {
 
     public Stopwatch getStopwatch() {
         return stopwatch;
+    }
+
+    public int getNumberOfLaps() {
+        return numberOfLaps;
     }
 }

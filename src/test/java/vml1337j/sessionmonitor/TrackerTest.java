@@ -49,32 +49,51 @@ public class TrackerTest {
     }
 
     @Test
-    void shouldReturnLapWithTwoDurations() {
-        track.addCheckPosition(15, 15);
+    void shouldHasZeroLaps() {
         Tracker tracker = new Tracker(track, stopwatch);
 
-        tracker.move(10, 10);
-        tracker.move(15, 15);
-        tracker.move(10, 10);
-        Lap lap = stopwatch.getLap();
-
-        assertThat(lap.durations().size())
-                .isEqualTo(2);
+        assertThat(tracker.getNumberOfLaps())
+                .isZero();
     }
 
     @Test
-    void shouldReturnLapWithThreeDurations() {
-        track.addCheckPosition(15, 15);
-        track.addCheckPosition(200, 15);
+    void shouldHasOneLapWhenCrossStartingLineTwice() {
         Tracker tracker = new Tracker(track, stopwatch);
 
         tracker.move(10, 10);
-        tracker.move(15, 15);
-        tracker.move(200, 15);
         tracker.move(10, 10);
-        Lap lap = stopwatch.getLap();
 
-        assertThat(lap.durations().size())
-                .isEqualTo(3);
+        assertThat(tracker.getNumberOfLaps())
+                .isEqualTo(1);
     }
+
+    //    @Test
+//    void shouldReturnLapWithTwoDurations() {
+//        track.addCheckPosition(15, 15);
+//        Tracker tracker = new Tracker(track, stopwatch);
+//
+//        tracker.move(10, 10);
+//        tracker.move(15, 15);
+//        tracker.move(10, 10);
+//        Lap lap = stopwatch.getLap();
+//
+//        assertThat(lap.durations().size())
+//                .isEqualTo(2);
+//    }
+
+//    @Test
+//    void shouldReturnLapWithThreeDurations() {
+//        track.addCheckPosition(15, 15);
+//        track.addCheckPosition(200, 15);
+//        Tracker tracker = new Tracker(track, stopwatch);
+//
+//        tracker.move(10, 10);
+//        tracker.move(15, 15);
+//        tracker.move(200, 15);
+//        tracker.move(10, 10);
+//        Lap lap = stopwatch.getLap();
+//
+//        assertThat(lap.durations().size())
+//                .isEqualTo(3);
+//    }
 }
